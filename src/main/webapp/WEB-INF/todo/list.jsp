@@ -28,6 +28,11 @@
             <span>${dto.title}</span>
             <span>${dto.dueDate}</span>
             <span>${dto.finished? "DONE": "NOT YET"}</span>
+            <form action="/todo/remove" method="post">
+                <input type="hidden" name="tno" value="${dto.tno}"/>
+                <button>Delete</button>
+
+            </form>
         </li>
     </c:forEach>
 </ul>
