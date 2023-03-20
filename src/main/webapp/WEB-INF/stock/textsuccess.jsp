@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: mozzi
@@ -11,7 +12,17 @@
     <title>Title</title>
 </head>
 <body>
-<h1>등록 완료!</h1>
+<form action="/stock/textsuccess", method="get">
+<ul>
+    <c:forEach items="${stockDTO}" var="dto">
+        <li>
 
+            <span>${dto.title}</span>
+            <span>${dto.content}</span>
+        </li>
+    </c:forEach>
+</ul>
+</ul>
+</form>
 </body>
 </html>
