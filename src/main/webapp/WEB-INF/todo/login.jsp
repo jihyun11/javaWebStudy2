@@ -16,9 +16,9 @@
     <c:if test="${param.result == 'error'}">
         <h1>로그인 에러</h1>
     </c:if>
-    <form action="/login" method="post">
-        <input type="text" name="mid">
-        <input type="text" name="mpw">
+    <form action="/stocklogin" method="post">
+        <input type="text" name="sid">
+        <input type="text" name="spw">
         <input type="checkbox" name="auto">
         <button type="submit">LOGIN</button>
     </form>
