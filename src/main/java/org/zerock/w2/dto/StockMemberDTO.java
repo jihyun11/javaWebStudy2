@@ -13,4 +13,5 @@ public class StockMemberDTO {
 
     private String sid;
     private String spw;
+    private String uuid;
 }

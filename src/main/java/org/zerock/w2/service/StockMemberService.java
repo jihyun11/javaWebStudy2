@@ -29,4 +29,15 @@ public enum StockMemberService {
 
         return stockMemberDTO;
     }
+
+    public void StockuUpdateUuid (String sid, String uuid) throws Exception {
+        dao.getWithUpdateUuid(sid, uuid);
+    }
+
+    public StockMemberDTO StockGetByUUID (String uuid) throws Exception {
+        StockMemberVO vo = dao.getWithSelectUUID(uuid);
+        StockMemberDTO stockMemberDTO = modelMapper.map(vo, StockMemberDTO.class);
+
+        return stockMemberDTO;
+    }
 }

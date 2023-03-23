@@ -24,5 +24,8 @@
 </ul>
 </ul>
 </form>
+<form action="/stocklogout" method="post">
+    <button>LOGOUT</button>
+</form>
 </body>
 </html>

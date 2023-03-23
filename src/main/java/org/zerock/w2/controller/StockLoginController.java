@@ -3,15 +3,16 @@ package org.zerock.w2.controller;
 import lombok.extern.java.Log;
 import lombok.extern.log4j.Log4j2;
 import org.zerock.w2.dao.StockMemberDAO;
+import org.zerock.w2.dto.MemberDTO;
 import org.zerock.w2.dto.StockMemberDTO;
+import org.zerock.w2.service.MemberService;
 import org.zerock.w2.service.StockMemberService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 import java.io.IOException;
+import java.util.UUID;
 
 @WebServlet("/stocklogin")
 @Log
@@ -32,11 +33,33 @@ public class StockLoginController extends HttpServlet {
 
         String auto = req.getParameter("auto");
 
+        boolean rememberMe = auto != null && auto.equals("on");
+
         try {
+
             StockMemberDTO stockMemberDTO = StockMemberService.INSTANCE.login(sid, spw);
+
+            if (rememberMe) {
+                String uuid = UUID.randomUUID().toString();
+
+                StockMemberService.INSTANCE.StockuUpdateUuid(sid, uuid);
+                stockMemberDTO.setUuid(uuid);
+
+                Cookie rememberCookie = new Cookie("remember-me", uuid);
+                rememberCookie.setMaxAge(60*60*24*7); //쿠키유효기간1주일
+                rememberCookie.setPath("/");
+
+                resp.addCookie(rememberCookie);
+            }
+
+            HttpSession session = req.getSession();
+            session.setAttribute("loginInfo", stockMemberDTO);
             resp.sendRedirect("/stock/text");
+
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            resp.sendRedirect("/login?result=error");
         }
     }
 }
+
+

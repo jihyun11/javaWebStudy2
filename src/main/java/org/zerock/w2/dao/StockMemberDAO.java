@@ -31,4 +31,36 @@ public class StockMemberDAO {
                 .build();
         return stockMemberVO;
     }
+
+    public void getWithUpdateUuid (String sid, String uuid) throws Exception {
+        String sql = "update stock_member set uuid = ? where sid = ?";
+
+        @Cleanup Connection connection = ConnectionUtil.INSTANCE.getConnection();
+        @Cleanup PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+        preparedStatement.setString(1, uuid);
+        preparedStatement.setString(2, sid);
+        preparedStatement.executeUpdate();
+    }
+
+    public StockMemberVO getWithSelectUUID (String uuid) throws Exception {
+        String query = "select sid, spw for stock_member where uuid = ?";
+
+        @Cleanup Connection connection = ConnectionUtil.INSTANCE.getConnection();
+        @Cleanup PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+        preparedStatement.setString(1, uuid);
+
+        @Cleanup ResultSet resultSet = preparedStatement.executeQuery();
+
+        resultSet.next();
+
+        StockMemberVO stockMemberVO = StockMemberVO.builder()
+                .sid(resultSet.getString(1))
+                .spw(resultSet.getString(2))
+                .uuid(resultSet.getString(3))
+                .build();
+
+        return stockMemberVO;
+    }
 }

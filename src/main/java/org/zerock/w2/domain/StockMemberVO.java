@@ -11,4 +11,5 @@ public class StockMemberVO {
 
     private String sid;
     private String spw;
+    private String uuid;
 }
