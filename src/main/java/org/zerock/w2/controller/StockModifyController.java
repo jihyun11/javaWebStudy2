@@ -24,7 +24,7 @@ public class StockModifyController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             String title = req.getParameter("title");
-            StockDTO stockDTO = stockService.get(title);
+            StockDTO stockDTO = stockService.Stockget(title);
 
             //데이터담기
             req.setAttribute("dto", stockDTO);

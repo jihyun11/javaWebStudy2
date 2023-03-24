@@ -54,7 +54,7 @@ public enum StockService {
         dao.StockUpdateOne(stockVO);
     }
 
-    public StockDTO get(String title) throws Exception {
+    public StockDTO Stockget(String title) throws Exception {
         log.info("title: " + title);
         StockVO stockVO = dao.StockSelectOne(title);
         StockDTO stockDTO = modelMapper.map(stockVO, StockDTO.class);
