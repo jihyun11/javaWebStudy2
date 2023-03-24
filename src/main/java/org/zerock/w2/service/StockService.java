@@ -42,4 +42,22 @@ public enum StockService {
                 .collect(Collectors.toList());
         return stockDTO;
     }
+
+    public void StockRemove (String title) throws Exception {
+        log.info("title: " + title);
+        dao.StockDeleteOne(title);
+    }
+
+    public void StockModify (StockDTO stockDTO) throws Exception {
+        log.info("StockDTO: " + stockDTO);
+        StockVO stockVO = modelMapper.map(stockDTO, StockVO.class);
+        dao.StockUpdateOne(stockVO);
+    }
+
+    public StockDTO get(String title) throws Exception {
+        log.info("title: " + title);
+        StockVO stockVO = dao.StockSelectOne(title);
+        StockDTO stockDTO = modelMapper.map(stockVO, StockDTO.class);
+        return stockDTO;
+    }
 }

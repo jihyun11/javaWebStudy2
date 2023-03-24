@@ -19,6 +19,14 @@
 
             <span>${dto.title}</span>
             <span>${dto.content}</span>
+            <form action="/stock/remove" method="post">
+                <input type="hidden" name="title" value="${dto.title}"/>
+                <button>Delete</button>
+            </form>
+            <form action="/stock/modify" method="post">
+                <input type="hidden" name="title" value="${dto.title}"/>
+                <button>Modify</button>
+            </form>
         </li>
     </c:forEach>
 </ul>
