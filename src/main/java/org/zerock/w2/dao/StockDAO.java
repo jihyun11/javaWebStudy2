@@ -80,6 +80,7 @@ public class StockDAO {
 
         preparedStatement.setString(1, stockVO.getTitle());
         preparedStatement.setString(2, stockVO.getContent());
+        preparedStatement.setString(3, stockVO.getTitle());
 
         preparedStatement.executeUpdate();
 
