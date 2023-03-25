@@ -51,6 +51,6 @@ public class StockModifyController extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        resp.sendRedirect("/stock/list");
+        resp.sendRedirect("/stock/textsuccess");
     }
 }

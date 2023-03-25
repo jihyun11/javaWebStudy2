@@ -23,7 +23,7 @@
                 <input type="hidden" name="title" value="${dto.title}"/>
                 <button>Delete</button>
             </form>
-            <form action="/stock/modify" method="post">
+            <form action="/stock/modify" method="get">
                 <input type="hidden" name="title" value="${dto.title}"/>
                 <button>Modify</button>
             </form>
